@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import styles from './Map.module.scss';
+import { useGetMarkersQuery } from '@/store';
 
 // Initialize initMap as a global function
 declare global {
@@ -18,8 +19,8 @@ interface MapProps {
   location: Location;
 }
 
-
-const Map: React.FC<MapProps> = ({location}) => {
+const Map: React.FC<MapProps> = ({ location }) => {
+  const { markers } = useGetMarkersQuery();
   useEffect(() => {
     const initMap = async () => {
       // Ensure the Google Maps API script has loaded

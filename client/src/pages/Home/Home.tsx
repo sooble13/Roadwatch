@@ -5,6 +5,9 @@ import { useGetUserQuery, selectLocation } from '@/store';
 import { useSelector } from 'react-redux';
 import { useLocation } from '@/hooks';
 import { Header, Map, CustomButton, Navbar, EnableNotification } from '@/components';
+import SpeedDial from '@mui/material/SpeedDial';
+import SpeedDialAction from '@mui/material/SpeedDialAction';
+import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 
 // Image imports
 import logo from 'src/assets/Updated_RoadWatch_Logo.svg';
