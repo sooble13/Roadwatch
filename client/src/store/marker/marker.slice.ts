@@ -4,17 +4,12 @@ import { apiSlice } from '../api';
 import { IMarker } from '@/types';
 
 const transformMarkerResponse = ({
-  data: {
-    longitude,
-    latitude,
-    timestamp,
-    type,
-  },
+  data: { longitude, latitude, timestamp, type },
 }: any): IMarker => ({
-    longitude,
-    latitude,
-    timestamp,
-    type,
+  longitude,
+  latitude,
+  timestamp,
+  type,
 });
 
 export const marker = apiSlice.injectEndpoints({
@@ -32,7 +27,4 @@ export const marker = apiSlice.injectEndpoints({
   }),
 });
 
-export const {
-  useGetMarkersQuery,
-  useSaveMarkerMutation,
-} = marker;
+export const { useGetMarkersQuery, useSaveMarkerMutation } = marker;
