@@ -25,7 +25,16 @@ interface MapProps {
 }
 
 const Map: React.FC<MapProps> = ({ location }) => {
-  const { markers } = useGetMarkersQuery();
+  const { data: markers } = useGetMarkersQuery();
+
+  const parser = new DOMParser();
+
+  const coneSvg = parser.parseFromString(cone, 'image/svg+xml').documentElement;
+  const potholeSvg = parser.parseFromString(pothole, 'image/svg+xml').documentElement;
+  const roadDamageSvg = parser.parseFromString(roadDamage, 'image/svg+xml').documentElement;
+  const carAccidentSvg = parser.parseFromString(carAccident, 'image/svg+xml').documentElement;
+  const warningSvg = parser.parseFromString(warning, 'image/svg+xml').documentElement;
+
   useEffect(() => {
     const initMap = async () => {
       // Ensure the Google Maps API script has loaded
@@ -48,12 +57,24 @@ const Map: React.FC<MapProps> = ({ location }) => {
         mapId: 'ROADWATCH_MAP_ID',
       });
 
-      // Test marker
+      //Test marker
       new AdvancedMarkerElement({
         map: map,
         position: position,
         title: 'Test Marker',
       });
+
+      // Check if markers exist and are an array
+      if (Array.isArray(markers)) {
+        // Your existing map initialization code...
+        markers.forEach((marker) => {
+          new AdvancedMarkerElement({
+            map: map,
+            position: { lat: marker.latitude, lng: marker.longitude },
+            title: marker.type,
+          });
+        });
+      }
     };
 
     // Dynamically load the Google Maps script

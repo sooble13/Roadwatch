@@ -18,7 +18,16 @@ export interface IMarker {
   longitude: number;
   latitude: number;
   timestamp: Date;
-  type: 'default' | 'pothole' | 'sbump' | 'closure' | 'xwalk';
+  type:
+    | 'default'
+    | 'pothole'
+    | 'sbump'
+    | 'closure'
+    | 'xwalk'
+    | 'carAccident'
+    | 'roadDamage'
+    | 'warningSign'
+    | 'cone';
 }
 
 export interface Auth {

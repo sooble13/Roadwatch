@@ -4,8 +4,8 @@ import Marker from '../models/Marker';
 // GET endpoint to retrieve all markers with longitude and latitude
 export const getMarkers = async (req: Request, res: Response) => {
   try {
-    // Retrieve all markers from the database with projection to include only longitude and latitude
-    const markers = await Marker.find({}, 'longitude latitude');
+    // Retrieve all markers from the database with projection to include longitude, latitude, and type
+    const markers = await Marker.find({}, 'longitude latitude type');
     return res.status(200).json(markers); // Return retrieved markers as JSON response
   } catch (err) {
     console.error('Could not get markers: ', err);
@@ -15,7 +15,7 @@ export const getMarkers = async (req: Request, res: Response) => {
 
 // POST endpoint to save a marker to the database
 export const saveMarker = async (req: Request, res: Response) => {
-  const { longitude, latitude } = req.body;
+  const { longitude, latitude, type } = req.body;
 
   // Check if longitude and latitude are provided
   if (!longitude || !latitude) {
@@ -26,7 +26,7 @@ export const saveMarker = async (req: Request, res: Response) => {
 
   try {
     // Create a new marker instance and save it to the database
-    const newMarker = new Marker({ longitude, latitude });
+    const newMarker = new Marker({ longitude, latitude, type });
     await newMarker.save();
     res
       .status(201)

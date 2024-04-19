@@ -90,7 +90,7 @@ export default function Home(): JSX.Element {
       <SpeedDial
         icon={<SpeedDialIcon />}
         ariaLabel="SpeedDial"
-        sx={{ position: 'absolute', bottom: 80, right: 24 }}
+        sx={{ position: 'absolute', bottom: 80, right: 60 }}
         onClose={handleClose}
         onOpen={handleOpen}
         open={open}
