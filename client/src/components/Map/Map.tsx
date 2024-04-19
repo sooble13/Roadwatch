@@ -1,6 +1,11 @@
 import { useEffect } from 'react';
 import styles from './Map.module.scss';
 import { useGetMarkersQuery } from '@/store';
+import cone from '../../assets/markers/Cone.svg';
+import pothole from '../../assets/markers/Pothole.svg';
+import roadDamage from '../../assets/markers/RoadDamage.svg';
+import carAccident from '../../assets/markers/CarAccident.svg';
+import warning from '../../assets/markers/WarningSign.svg';
 
 // Initialize initMap as a global function
 declare global {

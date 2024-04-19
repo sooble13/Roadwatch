@@ -3,19 +3,19 @@
 import { apiSlice } from '../api';
 import { IMarker } from '@/types';
 
-const transformMarkerResponse = ({
-  data: { longitude, latitude, timestamp, type },
-}: any): IMarker => ({
-  longitude,
-  latitude,
-  timestamp,
-  type,
-});
+const transformMarkerResponse = (response) =>
+  response.map((marker) => ({
+    longitude: marker.longitude,
+    latitude: marker.latitude,
+    timestamp: marker.timestamp,
+    type: marker.type,
+  }));
 
 export const marker = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getMarkers: builder.query<{ data: IMarker[] }, void>({
-      query: () => '/all-markers',
+    getMarkers: builder.query<IMarker[], void>({
+      query: () => '/marker/all-markers',
+      transformResponse: transformMarkerResponse,
     }),
     saveMarker: builder.mutation<void, IMarker>({
       query: (body) => ({
