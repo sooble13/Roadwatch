@@ -25,7 +25,7 @@ interface MapProps {
 }
 
 const Map: React.FC<MapProps> = ({ location }) => {
-  const { data: markers } = useGetMarkersQuery();
+  const { data } = useGetMarkersQuery();
 
   const parser = new DOMParser();
 
@@ -58,16 +58,16 @@ const Map: React.FC<MapProps> = ({ location }) => {
       });
 
       //Test marker
-      new AdvancedMarkerElement({
-        map: map,
-        position: position,
-        title: 'Test Marker',
-      });
+      // new AdvancedMarkerElement({
+      //   map: map,
+      //   position: position,
+      //   title: 'Test Marker',
+      // });
 
       // Check if markers exist and are an array
-      if (Array.isArray(markers)) {
+      if (Array.isArray(data)) {
         // Your existing map initialization code...
-        markers.forEach((marker) => {
+        data.forEach((marker) => {
           new AdvancedMarkerElement({
             map: map,
             position: { lat: marker.latitude, lng: marker.longitude },
